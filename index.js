@@ -53,8 +53,22 @@ const serviceCatagory = [
   { id: 4, name: "AC Water Drop", price: 1500, rating: 4.8  }
 ];
 
+const serviceCart = [];
+
+
 app.get("/api/serviceCatagory", (req, res) => {
   res.json(serviceCatagory);
+});
+
+//service add to cart
+app.post("/api/serviceCart", (req, res) => {
+  const cart = { served: false, ...req.body };
+  serviceCart.push(cart);
+  res.json(cart);
+});
+
+app.get("/api/serviceCart", (req, res) => {
+  res.json(serviceCart);
 });
 
 app.listen(9001, () => {
